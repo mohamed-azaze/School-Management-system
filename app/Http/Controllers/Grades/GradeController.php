@@ -1,22 +1,27 @@
 <?php
-
 namespace App\Http\Controllers\Grades;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGrades;
-use App\Models\Classroom;
 use App\Models\Grade;
+use App\Repository\GradeRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
+
+    protected $grade;
+
+    public function __construct(GradeRepositoryInterface $grade)
+    {
+        $this->grade = $grade;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $grades = Grade::all();
-        return view('pages.Grades.Grades', compact('grades'));
+        return $this->grade->index();
     }
 
     /**
@@ -32,25 +37,7 @@ class GradeController extends Controller
      */
     public function store(StoreGrades $request)
     {
-
-        // if (Grade::where('Name->ar', $request->Name)->orWhere('Name->en', $request->Name_en)->exists()) {
-        //     return redirect()->back()->withErrors(trans('Grades_trans.exists'));
-        // }
-
-        try {
-
-            $validated = $request->validated();
-            $Grade = new Grade();
-            $Grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
-            $Grade->Notes = $request->Notes;
-            $Grade->save();
-            toastr()->success(trans('messages.success'));
-
-            return redirect()->route('grades.index');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
-
+        return $this->grade->store($request);
     }
 
     /**
@@ -72,21 +59,9 @@ class GradeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreGrades $request, string $id)
+    public function update(StoreGrades $request)
     {
-        try {
-
-            $validated = $request->validated();
-            $Grades = Grade::findorFail($request->id);
-            $Grades->update([
-                $Grades->Name = ['en' => $request->Name_en, 'ar' => $request->Name],
-                $Grades->Notes = $request->Notes,
-            ]);
-            toastr()->success(trans('messages.Update'));
-            return redirect()->route('grades.index');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        return $this->grade->update($request);
     }
 
     /**
@@ -94,16 +69,6 @@ class GradeController extends Controller
      */
     public function destroy(Request $request)
     {
-
-        $MY_Class_id = Classroom::where('Grade_id', $request->id)->pluck('Grade_id');
-        if ($MY_Class_id->count() == 0) {
-            $Grades = Grade::findorFail($request->id)->delete();
-            toastr()->success(trans('messages.Delete'));
-            return redirect()->route('grades.index');
-        } else {
-            toastr()->success(trans('Grades_trans.delete_Grade_Error'));
-            return redirect()->route('grades.index');
-        }
-
+        return $this->grade->destroy($request);
     }
 }

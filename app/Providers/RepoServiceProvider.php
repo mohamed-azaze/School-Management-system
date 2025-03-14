@@ -1,13 +1,18 @@
 <?php
-
 namespace App\Providers;
 
+use App\Repository\GradeRepository;
+use App\Repository\GradeRepositoryInterface;
 use App\Repository\LibraryRepository;
 use App\Repository\LibraryRepositoryInterface;
 use App\Repository\QuestionRepository;
 use App\Repository\QuestionRepositoryInterface;
 use App\Repository\QuizzRepository;
 use App\Repository\QuizzRepositoryInterface;
+use App\Repository\StudentRepository;
+use App\Repository\StudentRepositoryInterface;
+use App\Repository\TeacherRepository;
+use App\Repository\TeacherRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepoServiceProvider extends ServiceProvider
@@ -19,11 +24,14 @@ class RepoServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            'App\Repository\TeacherRepositoryInterface',
-            'App\Repository\TeacherRepository');
+            GradeRepositoryInterface::class,
+            GradeRepository::class);
         $this->app->bind(
-            'App\Repository\StudentRepositoryInterface',
-            'App\Repository\StudentRepository');
+            TeacherRepositoryInterface::class,
+            TeacherRepository::class);
+        $this->app->bind(
+            StudentRepositoryInterface::class,
+            StudentRepository::class);
         $this->app->bind(
             'App\Repository\StudentpromotionRepositoryInterface',
             'App\Repository\StudentpromotionRepository');

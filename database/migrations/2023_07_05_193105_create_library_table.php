@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('file_name');
-            $table->foreignId('Grade_id')->references('id')->on('Grades')->onDelete('cascade');
+            $table->foreignId('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('Classroom_id')->references('id')->on('Classrooms')->onDelete('cascade');
             $table->foreignId('section_id')->references('id')->on('Sections')->onDelete('cascade');
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');

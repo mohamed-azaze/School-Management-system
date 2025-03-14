@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Grade;
@@ -11,16 +10,16 @@ class GradesSeeder extends Seeder
 
     public function run(): void
     {
-        DB::table('Grades')->delete();
+        DB::table('grades')->delete();
 
         $grades = [
             ['en' => 'Grade One', 'ar' => 'المرحلة الابتدائية'],
-            ['en' => 'middle School', 'ar' => 'المرحلةالاعدادية'],
+            ['en' => 'Middle School', 'ar' => 'المرحلةالاعدادية'],
             ['en' => 'High School', 'ar' => 'المرحلة الثانوية'],
         ];
 
         foreach ($grades as $gr) {
-            Grade::create(['Name' => $gr]);
+            Grade::create(['name' => $gr]);
         }
     }
 }
