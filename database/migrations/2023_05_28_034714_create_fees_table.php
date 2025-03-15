@@ -17,8 +17,8 @@ return new class extends Migration
             $table->bigInteger('price');
             $table->bigInteger('grade_id')->unsigned();
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->bigInteger('Classroom_id')->unsigned();
-            $table->foreign('Classroom_id')->references('id')->on('Classrooms')->onDelete('cascade');
+            $table->bigInteger('classroom_id')->unsigned();
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
             $table->string('academic_year');
             $table->string('description')->nullable();
             $table->integer('Fee_type');

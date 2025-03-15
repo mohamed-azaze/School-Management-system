@@ -3,14 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateClassroomsTable extends Migration
+class CreateclassroomsTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('Classrooms', function (Blueprint $table) {
+        Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('Name_Class');
+            $table->string('class_name');
             $table->bigInteger('grade_id')->unsigned();
             $table->timestamps();
         });
@@ -18,6 +18,6 @@ class CreateClassroomsTable extends Migration
 
     public function down()
     {
-        Schema::drop('Classrooms');
+        Schema::drop('classrooms');
     }
 }

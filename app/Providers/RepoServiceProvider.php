@@ -1,6 +1,10 @@
 <?php
 namespace App\Providers;
 
+use App\Repository\ClassroomRepository;
+use App\Repository\ClassroomRepositoryInterface;
+use App\Repository\FeeInvoicesRepository;
+use App\Repository\FeeInvoicesRepositoryInterface;
 use App\Repository\GradeRepository;
 use App\Repository\GradeRepositoryInterface;
 use App\Repository\LibraryRepository;
@@ -9,6 +13,12 @@ use App\Repository\QuestionRepository;
 use App\Repository\QuestionRepositoryInterface;
 use App\Repository\QuizzRepository;
 use App\Repository\QuizzRepositoryInterface;
+use App\Repository\StudentFeesRepository;
+use App\Repository\StudentFeesRepositoryInterface;
+use App\Repository\StudentGraduatedRepository;
+use App\Repository\StudentGraduatedRepositoryInterface;
+use App\Repository\StudentpromotionRepository;
+use App\Repository\StudentpromotionRepositoryInterface;
 use App\Repository\StudentRepository;
 use App\Repository\StudentRepositoryInterface;
 use App\Repository\TeacherRepository;
@@ -27,23 +37,26 @@ class RepoServiceProvider extends ServiceProvider
             GradeRepositoryInterface::class,
             GradeRepository::class);
         $this->app->bind(
+            ClassroomRepositoryInterface::class,
+            ClassroomRepository::class);
+        $this->app->bind(
             TeacherRepositoryInterface::class,
             TeacherRepository::class);
         $this->app->bind(
             StudentRepositoryInterface::class,
             StudentRepository::class);
         $this->app->bind(
-            'App\Repository\StudentpromotionRepositoryInterface',
-            'App\Repository\StudentpromotionRepository');
+            StudentpromotionRepositoryInterface::class,
+            StudentpromotionRepository::class);
         $this->app->bind(
-            'App\Repository\StudentGraduatedRepositoryInterface',
-            'App\Repository\StudentGraduatedRepository');
+            StudentGraduatedRepositoryInterface::class,
+            StudentGraduatedRepository::class);
         $this->app->bind(
-            'App\Repository\StudentFeesRepositoryInterface',
-            'App\Repository\StudentFeesRepository');
+            StudentFeesRepositoryInterface::class,
+            StudentFeesRepository::class);
         $this->app->bind(
-            'App\Repository\FeeInvoicesRepositoryInterface',
-            'App\Repository\FeeInvoicesRepository');
+            FeeInvoicesRepositoryInterface::class,
+            FeeInvoicesRepository::class);
         $this->app->bind(
             'App\Repository\ReceiptStudentsRepositoryInterface',
             'App\Repository\ReceiptStudentsRepository');

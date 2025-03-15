@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Classroom;
@@ -14,7 +13,7 @@ class My_ClassesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('Classrooms')->delete();
+        DB::table('classrooms')->delete();
 
         $classrooms = [
             ['en' => 'class One', 'ar' => 'الصف الاول'],
@@ -25,8 +24,8 @@ class My_ClassesSeeder extends Seeder
 
         foreach ($classrooms as $classroom) {
             Classroom::create([
-                'Name_Class' => $classroom,
-                'Grade_id' => Grade::all()->unique()->random()->id,
+                'class_name' => $classroom,
+                'grade_id'   => Grade::all()->unique()->random()->id,
             ]);
         }
 
