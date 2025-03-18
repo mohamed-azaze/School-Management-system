@@ -39,9 +39,9 @@
                 <div class="card-body">
                     <div class="accordion gray plus-icon round">
 
-                        @foreach ($Grades as $Grade)
+                        @foreach ($grades as $Grade)
                             <div class="acd-group">
-                                <a href="#" class="acd-heading">{{ $Grade->Name }}</a>
+                                <a href="#" class="acd-heading">{{ $Grade->name }}</a>
                                 <div class="acd-des">
 
                                     <div class="row">
@@ -57,7 +57,7 @@
                                                             <thead>
                                                                 <tr class="text-dark">
                                                                     <th>#</th>
-                                                                    <th>{{ trans('Sections_trans.Name_Section') }}
+                                                                    <th>{{ trans('Sections_trans.section_name') }}
                                                                     </th>
                                                                     <th>{{ trans('Sections_trans.Name_Class') }}</th>
                                                                     <th>{{ trans('Sections_trans.Status') }}</th>
@@ -70,8 +70,8 @@
                                                                     <tr>
                                                                         <?php $i++; ?>
                                                                         <td>{{ $i }}</td>
-                                                                        <td>{{ $list_Sections->Name_Section }}</td>
-                                                                        <td>{{ $list_Sections->Classrooms->Name_Class }}
+                                                                        <td>{{ $list_Sections->section_name }}</td>
+                                                                        <td>{{ $list_Sections->Classrooms->class_name }}
                                                                         </td>
                                                                         <td>
                                                                             @if ($list_Sections->Status === 1)
@@ -129,16 +129,16 @@
                                                                                         <div class="row">
                                                                                             <div class="col">
                                                                                                 <input type="text"
-                                                                                                    name="Name_Section_Ar"
+                                                                                                    name="section_name_ar"
                                                                                                     class="form-control"
-                                                                                                    value="{{ $list_Sections->getTranslation('Name_Section', 'ar') }}">
+                                                                                                    value="{{ $list_Sections->getTranslation('section_name', 'ar') }}">
                                                                                             </div>
 
                                                                                             <div class="col">
                                                                                                 <input type="text"
-                                                                                                    name="Name_Section_En"
+                                                                                                    name="section_name_en"
                                                                                                     class="form-control"
-                                                                                                    value="{{ $list_Sections->getTranslation('Name_Section', 'en') }}">
+                                                                                                    value="{{ $list_Sections->getTranslation('section_name', 'en') }}">
                                                                                                 <input id="id"
                                                                                                     type="hidden"
                                                                                                     name="id"
@@ -153,7 +153,7 @@
                                                                                         <div class="col">
                                                                                             <label for="inputName"
                                                                                                 class="control-label">{{ trans('Sections_trans.Name_Grade') }}</label>
-                                                                                            <select name="Grade_id"
+                                                                                            <select name="grade_id"
                                                                                                 class="custom-select"
                                                                                                 onclick="console.log($(this).val())">
                                                                                                 <!--placeholder-->
@@ -161,10 +161,10 @@
                                                                                                     value="{{ $Grade->id }}">
                                                                                                     {{ $Grade->Name }}
                                                                                                 </option>
-                                                                                                @foreach ($list_Grades as $list_Grade)
+                                                                                                @foreach ($grades_list as $grade_list)
                                                                                                     <option
-                                                                                                        value="{{ $list_Grade->id }}">
-                                                                                                        {{ $list_Grade->Name }}
+                                                                                                        value="{{ $grade_list->id }}">
+                                                                                                        {{ $grade_list->name }}
                                                                                                     </option>
                                                                                                 @endforeach
                                                                                             </select>
@@ -174,7 +174,7 @@
                                                                                         <div class="col">
                                                                                             <label for="inputName"
                                                                                                 class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
-                                                                                            <select name="Class_id"
+                                                                                            <select name="class_id"
                                                                                                 class="custom-select">
                                                                                                 <option
                                                                                                     value="{{ $list_Sections->Classrooms->id }}">
@@ -327,12 +327,12 @@
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" name="Name_Section_Ar" class="form-control"
+                                        <input type="text" name="section_name_ar" class="form-control"
                                             placeholder="{{ trans('Sections_trans.Section_name_ar') }}">
                                     </div>
 
                                     <div class="col">
-                                        <input type="text" name="Name_Section_En" class="form-control"
+                                        <input type="text" name="section_name_en" class="form-control"
                                             placeholder="{{ trans('Sections_trans.Section_name_en') }}">
                                     </div>
 
@@ -343,14 +343,14 @@
                                 <div class="col">
                                     <label for="inputName"
                                         class="control-label">{{ trans('Sections_trans.Name_Grade') }}</label>
-                                    <select name="Grade_id" class="custom-select"
+                                    <select name="grade_id" class="custom-select"
                                         onchange="console.log($(this).val())">
                                         <!--placeholder-->
                                         <option value="" selected disabled>
                                             {{ trans('Sections_trans.Select_Grade') }}
                                         </option>
-                                        @foreach ($list_Grades as $list_Grade)
-                                            <option value="{{ $list_Grade->id }}"> {{ $list_Grade->Name }}
+                                        @foreach ($grades_list as $grade_list)
+                                            <option value="{{ $grade_list->id }}"> {{ $grade_list->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -360,7 +360,7 @@
                                 <div class="col">
                                     <label for="inputName"
                                         class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
-                                    <select name="Class_id" class="custom-select">
+                                    <select name="class_id" class="custom-select">
 
                                     </select>
                                 </div>
@@ -399,17 +399,17 @@
 @toastr_render
 <script>
     $(document).ready(function() {
-        $('select[name="Grade_id"]').on('change', function() {
-            var Grade_id = $(this).val();
-            if (Grade_id) {
+        $('select[name="grade_id"]').on('change', function() {
+            var grade_id = $(this).val();
+            if (grade_id) {
                 $.ajax({
-                    url: "{{ URL::to('classes') }}/" + Grade_id,
+                    url: "{{ URL::to('classes') }}/" + grade_id,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
-                        $('select[name="Class_id"]').empty();
+                        $('select[name="class_id"]').empty();
                         $.each(data, function(key, value) {
-                            $('select[name="Class_id"]').append('<option value="' +
+                            $('select[name="class_id"]').append('<option value="' +
                                 key + '">' + value + '</option>');
                         });
                     },

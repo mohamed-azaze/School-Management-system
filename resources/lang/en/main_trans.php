@@ -12,7 +12,7 @@ return [
     'classes'             => 'Classes',
     'List_classes'        => 'Classes List',
     'sections'            => 'Sections',
-    'List_sections'       => 'List Sections',
+    'List_sections'       => 'Sections List',
     'students'            => 'Students',
     'add_student'         => 'Add student',
     'list_students'       => 'list Students',

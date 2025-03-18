@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Classroom;
@@ -15,7 +14,7 @@ class SectionsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('Sections')->delete();
+        DB::table('sections')->delete();
 
         $sections = [
             ['en' => 'a', 'ar' => 'ا'],
@@ -25,10 +24,10 @@ class SectionsSeeder extends Seeder
 
         foreach ($sections as $se) {
             Section::create([
-                'Name_Section' => $se,
-                'Status' => 1,
-                'Grade_id' => Grade::all()->unique()->random()->id,
-                'Class_id' => Classroom::all()->unique()->random()->id,
+                'section_name' => $se,
+                'status'       => 1,
+                'grade_id'     => Grade::all()->unique()->random()->id,
+                'class_id'     => Classroom::all()->unique()->random()->id,
             ]);
         }
 

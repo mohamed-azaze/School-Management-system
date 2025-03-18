@@ -9,10 +9,10 @@ class CreateSectionsTable extends Migration
 
     public function up()
     {
-        Schema::create('Sections', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('Name_Section');
-            $table->integer('Status');
+            $table->string('section_name');
+            $table->integer('status');
             $table->bigInteger('grade_id')->unsigned();
             $table->bigInteger('class_id')->unsigned();
             $table->timestamps();
@@ -21,6 +21,6 @@ class CreateSectionsTable extends Migration
 
     public function down()
     {
-        Schema::drop('Sections');
+        Schema::drop('sections');
     }
 }

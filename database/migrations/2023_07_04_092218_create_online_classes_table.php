@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->foreignId('section_id')->references('id')->on('Sections')->onDelete('cascade');
+            $table->foreignId('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('meeting_id');
             $table->string('topic');

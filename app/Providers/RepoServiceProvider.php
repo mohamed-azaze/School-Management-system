@@ -1,6 +1,8 @@
 <?php
 namespace App\Providers;
 
+use App\Repository\AttendanceRepository;
+use App\Repository\AttendanceRepositoryInterface;
 use App\Repository\ClassroomRepository;
 use App\Repository\ClassroomRepositoryInterface;
 use App\Repository\FeeInvoicesRepository;
@@ -9,10 +11,18 @@ use App\Repository\GradeRepository;
 use App\Repository\GradeRepositoryInterface;
 use App\Repository\LibraryRepository;
 use App\Repository\LibraryRepositoryInterface;
+use App\Repository\PaymentRepository;
+use App\Repository\PaymentRepositoryInterface;
+use App\Repository\ProcessingFeeRepository;
+use App\Repository\ProcessingFeeRepositoryInterface;
 use App\Repository\QuestionRepository;
 use App\Repository\QuestionRepositoryInterface;
 use App\Repository\QuizzRepository;
 use App\Repository\QuizzRepositoryInterface;
+use App\Repository\ReceiptStudentsRepository;
+use App\Repository\ReceiptStudentsRepositoryInterface;
+use App\Repository\SectionRepository;
+use App\Repository\SectionRepositoryInterface;
 use App\Repository\StudentFeesRepository;
 use App\Repository\StudentFeesRepositoryInterface;
 use App\Repository\StudentGraduatedRepository;
@@ -21,6 +31,8 @@ use App\Repository\StudentpromotionRepository;
 use App\Repository\StudentpromotionRepositoryInterface;
 use App\Repository\StudentRepository;
 use App\Repository\StudentRepositoryInterface;
+use App\Repository\SubjectRepository;
+use App\Repository\SubjectRepositoryInterface;
 use App\Repository\TeacherRepository;
 use App\Repository\TeacherRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -40,6 +52,9 @@ class RepoServiceProvider extends ServiceProvider
             ClassroomRepositoryInterface::class,
             ClassroomRepository::class);
         $this->app->bind(
+            SectionRepositoryInterface::class,
+            SectionRepository::class);
+        $this->app->bind(
             TeacherRepositoryInterface::class,
             TeacherRepository::class);
         $this->app->bind(
@@ -58,20 +73,20 @@ class RepoServiceProvider extends ServiceProvider
             FeeInvoicesRepositoryInterface::class,
             FeeInvoicesRepository::class);
         $this->app->bind(
-            'App\Repository\ReceiptStudentsRepositoryInterface',
-            'App\Repository\ReceiptStudentsRepository');
+            ReceiptStudentsRepositoryInterface::class,
+            ReceiptStudentsRepository::class);
         $this->app->bind(
-            'App\Repository\ProcessingFeeRepositoryInterface',
-            'App\Repository\ProcessingFeeRepository');
+            ProcessingFeeRepositoryInterface::class,
+            ProcessingFeeRepository::class);
         $this->app->bind(
-            'App\Repository\PaymentRepositoryInterface',
-            'App\Repository\PaymentRepository');
+            PaymentRepositoryInterface::class,
+            PaymentRepository::class);
         $this->app->bind(
-            'App\Repository\AttendanceRepositoryInterface',
-            'App\Repository\AttendanceRepository');
+            AttendanceRepositoryInterface::class,
+            AttendanceRepository::class);
         $this->app->bind(
-            'App\Repository\SubjectRepositoryInterface',
-            'App\Repository\SubjectRepository');
+            SubjectRepositoryInterface::class,
+            SubjectRepository::class);
         $this->app->bind(
             QuizzRepositoryInterface::class,
             QuizzRepository::class);

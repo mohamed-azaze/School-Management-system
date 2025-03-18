@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,21 +7,21 @@ use Spatie\Translatable\HasTranslations;
 class Section extends Model
 {
     use HasTranslations;
-    public $translatable = ['Name_Section'];
+    public $translatable = ['section_name'];
 
-    protected $fillable = ['Name_Section', 'Grade_id', 'Class_id'];
+    protected $fillable = ['section_name', 'grade_id', 'class_id'];
 
-    protected $table = 'Sections';
+    protected $table   = 'sections';
     public $timestamps = true;
 
     public function Grades()
     {
-        return $this->belongsTo('App\Models\Grade', 'Grade_id');
+        return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
     public function Classrooms()
     {
-        return $this->belongsTo('App\Models\Classroom', 'Class_id');
+        return $this->belongsTo('App\Models\Classroom', 'class_id');
     }
 
     public function Teachers()

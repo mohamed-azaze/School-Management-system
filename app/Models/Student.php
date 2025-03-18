@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +13,7 @@ class Student extends Authenticatable
     use HasTranslations;
     use SoftDeletes;
     public $translatable = ['name'];
-    protected $guarded = [];
+    protected $guarded   = [];
 
     public function gender()
     {
@@ -26,7 +25,7 @@ class Student extends Authenticatable
     }
     public function classroom()
     {
-        return $this->belongsTo(Classroom::class, 'Classroom_id');
+        return $this->belongsTo(Classroom::class, 'classroom_id');
     }
     public function section()
     {
